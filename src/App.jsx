@@ -12,6 +12,7 @@ class App extends React.Component{
       number : null,
       now : '',
       operator : '',
+      isCalculate : false,
     }
   };
 
@@ -51,7 +52,8 @@ class App extends React.Component{
       const regex = /[^0-9]$/
       if(regex.test(this.state.listnumber) === false){
       this.setState({
-        number : eval(this.state.listnumber)
+        number : eval(this.state.listnumber),
+        isCalculate : true
       })
     } else if(regex.test(this.state.listnumber) === true){
       this.setState({
@@ -67,10 +69,19 @@ class App extends React.Component{
       })
     }
     
-    else if(event != 'AC' && event != '='){
+    else if(event != 'AC' && event != '=' && this.state.isCalculate === false){
     this.setState({
       listnumber : this.state.listnumber + event,
-      now : event
+      now : event,
+      isCalculate : false
+    })
+  }
+    else if(event != 'AC' && event != '=' && this.state.isCalculate === true){
+    this.setState({
+      listnumber : '' + event,
+      number : null,
+      now : event,
+      isCalculate : false
     })
   }
   };

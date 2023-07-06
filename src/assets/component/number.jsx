@@ -14,7 +14,7 @@ export default class Number extends React.Component{
     keydown (event){
         if(event.keyCode === this.props.keyCode){
             this.props.clickHandler(this.props.text);
-            console.log(event)
+            this.props.op(this.props.class);
         }
     }
     render(){
