@@ -20,13 +20,13 @@ class App extends React.Component{
     const regex = /^[^0-9]/
     if(regex.test(this.state.listnumber) === true && this.state.number !== 'ERROR' && this.state.listnumber !== ''){
     this.setState({
-      number : 'ERROR'
+      number : 'ERROR',
+      isCalculate : true
     })
   }
     if(ps.operator === 'operator' && this.state.operator === 'operator' && this.state.now != ps.now && this.state.now != ''){
       let listnumber = ps.listnumber.split('');
       listnumber.pop();
-      console.log(listnumber)
       this.setState({
         listnumber : listnumber.join('') + this.state.now,
         now : ''
@@ -57,8 +57,7 @@ class App extends React.Component{
       })
     } else if(regex.test(this.state.listnumber) === true){
       this.setState({
-        listnumber : '',
-        number : 'ERROR'
+        number : '',
       })
     }
     }

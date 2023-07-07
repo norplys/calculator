@@ -34,7 +34,8 @@ body{
     @include flex(flex-start,center ,column)
 }
 #display-container{
-    @include flex(flex-start,flex-start ,column);
+    @include flex(flex-start ,flex-start ,column);
+    padding: 5px;
     margin-bottom: 20px;
     border-radius: 4px;
     border: 1px solid black;
@@ -42,18 +43,22 @@ body{
     width: 99%;
     min-height: 100px;
     #array{
+        width: 100%;
         word-break: break-all;
         padding: 5px;
         color: white;
         font-size: 2rem;
-        min-height: 50%;
+        min-height: 50px;
+        text-align: end;
     }
     #input{
+        width: 100%;
+        text-align: end;
         word-break: break-all;
         padding: 5px;
         font-size: 2rem;
         color : white;
-        min-height : 50%;
+        min-height : 50px;
     }
 }
 #button-container{

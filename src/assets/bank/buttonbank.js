@@ -2,37 +2,37 @@ export const bank = [
 {
     id : 'AC',
     value : 'delete',
-    keyCode : 46
+    keyCode : 8
 },
 {
     id : '*',
     value : 'multiple',
-    keyCode : 88,
+    keyCode : 106,
     class : 'operator'
     
 },
 {
     id : '/',
     value : 'division',
-    keyCode : 191,
+    keyCode : 111,
     class : 'operator'
 },
 {
     id : '+',
     value : 'plus',
-    keyCode : 187,
+    keyCode : 107,
     class : 'operator'
 },
 {
     id : '-',
     value : 'minus',
-    keyCode : 189,
+    keyCode : 109,
     class : 'operator'
 },
 {
     id : '=',
     value : 'equal',
-    keyCode : 187,
+    keyCode : 13,
 
 },
 {
@@ -98,6 +98,6 @@ export const bank = [
 {
     id : '.',
     value : 'fullstop',
-    keyCode  : 190,
+    keyCode  : 110,
     class : 'operator'
 },]
