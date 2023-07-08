@@ -57,8 +57,11 @@ class App extends React.Component{
     if(event === '='){
       const regex = /[^0-9]$/;
       if(regex.test(this.state.listnumber) === false){
+      let number = eval(this.state.listnumber);
+      let total = number.toFixed(4);
+      console.log(total)
       this.setState({
-        number : eval(this.state.listnumber),
+        number : parseFloat(total),
         isCalculate : true
       });
     } else if(regex.test(this.state.listnumber) === true){
