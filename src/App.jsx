@@ -17,14 +17,14 @@ class App extends React.Component{
   };
 
   componentDidUpdate(pp,ps){
-    const regex = /^[^0-9]/
+    const regex = /^[^0-9]/;
     if(regex.test(this.state.listnumber) === true && this.state.number !== 'ERROR' && this.state.listnumber !== ''){
     this.setState({
       number : 'ERROR',
       isCalculate : true
     })
   }
-    if(ps.operator === 'operator' && this.state.operator === 'operator' && this.state.now != ps.now && this.state.now != ''){
+    if(ps.operator === 'operator' && this.state.operator === 'operator' && this.state.now != ps.now && this.state.now != '' && this.state.now !== '='){
       let listnumber = ps.listnumber.split('');
       listnumber.pop();
       this.setState({
@@ -32,12 +32,18 @@ class App extends React.Component{
         now : ''
       })
     }
+    else if(ps.operator === 'operator' && this.state.operator === 'operator' && this.state.now != ps.now && this.state.now === '='){
+        this.setState({
+          listnumber : this.state.listnumber,
+          now : ''
+        })
+    }
     else if(ps.now === this.state.now && this.state.operator === 'operator'){
       this.setState({
         listnumber : ps.listnumber,
         now : ''
       })
-    }
+    };
   }
 
   operatorHandler(event){
@@ -49,16 +55,18 @@ class App extends React.Component{
 
   handleClick(event){
     if(event === '='){
-      const regex = /[^0-9]$/
+      const regex = /[^0-9]$/;
       if(regex.test(this.state.listnumber) === false){
       this.setState({
         number : eval(this.state.listnumber),
         isCalculate : true
-      })
+      });
     } else if(regex.test(this.state.listnumber) === true){
       this.setState({
         number : '',
-      })
+        isCalculate : false,
+        now : event,
+      });
     }
     }
     else if(event === 'AC'){
@@ -88,6 +96,7 @@ class App extends React.Component{
 
   render(){
     return(
+      <>
         <div id='container'>
           <Display total = {this.state.number} list = {this.state.listnumber}/>
           <section id = "button-container">
@@ -96,6 +105,8 @@ class App extends React.Component{
             })}
           </section>
         </div>      
+        <div id="subtitle">Coded and Deployed by <p id ="name">Norplys</p></div>
+        </>
     )
   };
 }

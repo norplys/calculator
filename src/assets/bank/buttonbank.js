@@ -33,6 +33,7 @@ export const bank = [
     id : '=',
     value : 'equal',
     keyCode : 13,
+    class : 'operator'
 
 },
 {

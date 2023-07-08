@@ -31,6 +31,7 @@ body{
     background-color: black;
     min-height: 425px;
     width: 334px;
+    box-shadow: 0px 0px 20px 5px rgba(255,255,255,0.2);
     @include flex(flex-start,center ,column)
 }
 #display-container{
@@ -74,8 +75,12 @@ button{
     border: none;
     border-radius: 4px;
     color : white;
-    
 }
+
+button:hover{
+    border: 1px solid aliceblue;
+}
+
 
 #delete{
     grid-column: 1/3;
@@ -113,4 +118,17 @@ button{
 }
 .operator{
     background-color: grey;
+}
+#subtitle{
+    padding-top: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    @include flex(center,center ,row );
+    color: white;
+}
+#name {
+    background: linear-gradient(to right, #e100ff, #0080ff);
+    color: transparent;
+    padding-left: 5px;
+    -webkit-background-clip: text;
+    background-clip: text;
 }
