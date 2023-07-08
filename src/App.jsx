@@ -59,7 +59,6 @@ class App extends React.Component{
       if(regex.test(this.state.listnumber) === false){
       let number = eval(this.state.listnumber);
       let total = number.toFixed(4);
-      console.log(total)
       this.setState({
         number : parseFloat(total),
         isCalculate : true
