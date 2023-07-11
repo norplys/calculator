@@ -13,6 +13,7 @@ class App extends React.Component{
       now : '',
       operator : '',
       isCalculate : false,
+      fullStop : false,
     }
   };
 
@@ -61,23 +62,51 @@ class App extends React.Component{
       let total = number.toFixed(4);
       this.setState({
         number : parseFloat(total),
-        isCalculate : true
+        isCalculate : true,
+        fullStop : false
       });
     } else if(regex.test(this.state.listnumber) === true){
       this.setState({
         number : '',
         isCalculate : false,
         now : event,
+        fullStop : false
       });
     }
+    }
+    else if(event === '.' && this.state.fullStop === false){
+      console.log(this.state.fullStop);
+      this.setState({
+        listnumber : this.state.listnumber + event,
+        number : null,
+        now : event,
+        isCalculate : false,
+        fullStop : true
+      })
+    }
+    else if(event === '.' && this.state.fullStop === true){
+      this.setState({
+        listnumber : this.state.listnumber,
+        now : event,
+        isCalculate : false,
+      })
+    }
+    else if(event === '+' || event === '-' || event === '*' || event === '/' && this.state.isCalculate === false){
+      this.setState({
+        listnumber : this.state.listnumber + event,
+        number : null,
+        now : event,
+        isCalculate : false,
+        fullStop : false
+      })
     }
     else if(event === 'AC'){
       this.setState({
         listnumber : '',
-        number : null
+        number : null,
+        fullStop : false,
       })
     }
-    
     else if(event != 'AC' && event != '=' && this.state.isCalculate === false){
     this.setState({
       listnumber : this.state.listnumber + event,
@@ -85,7 +114,7 @@ class App extends React.Component{
       isCalculate : false
     })
   }
-    else if(event != 'AC' && event != '=' && this.state.isCalculate === true){
+    else if(this.state.isCalculate === true){
     this.setState({
       listnumber : '' + event,
       number : null,
