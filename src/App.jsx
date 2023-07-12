@@ -25,7 +25,7 @@ class App extends React.Component{
       isCalculate : true
     })
   }
-    if(ps.operator === 'operator' && this.state.operator === 'operator' && this.state.now != ps.now && this.state.now != '' && this.state.now !== '='){
+    if(ps.operator === 'operator' && this.state.operator === 'operator' && this.state.now != ps.now && this.state.now != '' && this.state.now !== '=' && this.isCalculate === false){
       let listnumber = ps.listnumber.split('');
       listnumber.pop();
       this.setState({
@@ -57,17 +57,17 @@ class App extends React.Component{
   handleClick(event){
     if(event === '='){
       const regex = /[^0-9]$/;
-      if(regex.test(this.state.listnumber) === false){
+      if(regex.test(this.state.listnumber) === false && this.state.isCalculate === false && this.state.listnumber !== ''){
       let number = eval(this.state.listnumber);
       let total = number.toFixed(4);
       this.setState({
         number : parseFloat(total),
         isCalculate : true,
-        fullStop : false
+        fullStop : false,
+        now : event,
       });
-    } else if(regex.test(this.state.listnumber) === true){
+    } else if(regex.test(this.state.listnumber) === true || this.state.isCalculate === true || this.state.number !== '' || this.state.listnumber === ''){
       this.setState({
-        number : '',
         isCalculate : false,
         now : event,
         fullStop : false
