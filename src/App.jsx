@@ -18,7 +18,13 @@ class App extends React.Component{
 
 
   handleClick(event){
+    const regex2 = /^[^0-9]/
     const regex = /[^0-9]$/
+    if((regex2.test(this.state.listnumber) === true) && (this.state.listnumber != '')){
+      this.setState({
+        isCalculate : true,
+      });
+    }
     if(event === '='){
       if(regex.test(this.state.listnumber) === false && this.state.isCalculate === false && this.state.listnumber !== ''){
       let number = eval(this.state.listnumber);
@@ -33,7 +39,6 @@ class App extends React.Component{
       this.setState({
         listnumber : this.state.listnumber,
         isCalculate : false,
-        
         fullStop : false
       });
     }
@@ -96,7 +101,8 @@ class App extends React.Component{
     }else if(event === '0' && this.state.zeroHandler === false){
       this.setState({
         listnumber : this.state.listnumber + '0.',
-        fullStop : true
+        fullStop : true,
+        zeroHandler : true
       });
     }
     else{
@@ -108,14 +114,23 @@ class App extends React.Component{
   }
   } 
     else if(this.state.isCalculate === true){
-    this.setState({
+      if(event === '0'){
+        this.setState({
+        listnumber : '' + '0.',
+        number : null,
+        zeroHandler : true,
+        isCalculate : false,
+        fullStop : false
+        })
+      }else{
+      this.setState({
       listnumber : '' + event,
       number : null,
       zeroHandler : false,
       isCalculate : false,
       fullStop : false
     })
-  }
+  }}
   };
 
 
