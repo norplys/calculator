@@ -12,6 +12,7 @@ class App extends React.Component{
       number : null,
       isCalculate : false,
       fullStop : false,
+      zeroHandler : false,
     }
   };
 
@@ -44,7 +45,7 @@ class App extends React.Component{
       })
     }
     else if((event === '+' || event === '-' || event === '*' || event === '/' || event === '.') && (regex.test(this.state.listnumber) === false)){
-      if (event === '.'){
+      if (event === '.' ){
         this.setState({
           listnumber : this.state.listnumber + event,
           fullStop : true,
@@ -55,7 +56,8 @@ class App extends React.Component{
         listnumber : this.state.listnumber + event,
         number : null,
         isCalculate : false,
-        fullStop : false 
+        fullStop : false,
+        zeroHandler : false, 
       })
     }
     }
@@ -72,7 +74,8 @@ class App extends React.Component{
         listnumber : splitting.join('') + event,
         number : null,
         isCalculate : false,
-        fullStop : false
+        fullStop : false,
+        zeroHandler : false,
       })
     }
     }
@@ -81,20 +84,34 @@ class App extends React.Component{
         listnumber : '',
         number : null,
         fullStop : false,
+        zeroHandler : false,
       })
     }
     else if(event != 'AC' && event != '=' && this.state.isCalculate === false){
+    if(event === '0' && this.state.zeroHandler === true){
+      this.setState({
+        listnumber : this.state.listnumber + event,
+        isCalculate : false
+      });
+    }else if(event === '0' && this.state.zeroHandler === false){
+      this.setState({
+        listnumber : this.state.listnumber + '0.',
+        fullStop : true
+      });
+    }
+    else{
     this.setState({
       listnumber : this.state.listnumber + event,
-      
-      isCalculate : false
+      isCalculate : false,
+      zeroHandler : true
     })
+  }
   } 
     else if(this.state.isCalculate === true){
     this.setState({
       listnumber : '' + event,
       number : null,
-      
+      zeroHandler : false,
       isCalculate : false,
       fullStop : false
     })
