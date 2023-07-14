@@ -14,12 +14,11 @@ export default class Number extends React.Component{
     keydown (event){
         if(event.keyCode === this.props.keyCode){
             this.props.clickHandler(this.props.text);
-            this.props.op(this.props.class);
         }
     }
     render(){
         return(
-            <button  onClick={() => {this.props.clickHandler(this.props.text) ; this.props.op(this.props.class)}} className={this.props.class} id = {this.props.id}>{this.props.text}</button>
+            <button  onClick={() => {this.props.clickHandler(this.props.text)}} className={this.props.class} id = {this.props.id}>{this.props.text}</button>
         )
     }
 }3

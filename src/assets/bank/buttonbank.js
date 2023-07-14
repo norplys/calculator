@@ -1,5 +1,11 @@
 export const bank = [
 {
+    id : 'DEL',
+    value : 'erase',
+    keyCode : 46
+},
+
+{
     id : 'AC',
     value : 'delete',
     keyCode : 8

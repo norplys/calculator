@@ -20,11 +20,6 @@ class App extends React.Component{
   handleClick(event){
     const regex2 = /^[^0-9]/
     const regex = /[^0-9]$/
-    if((regex2.test(this.state.listnumber) === true) && (this.state.listnumber != '')){
-      this.setState({
-        isCalculate : true,
-      });
-    }
     if(event === '='){
       if(regex.test(this.state.listnumber) === false && this.state.isCalculate === false && this.state.listnumber !== ''){
       let number = eval(this.state.listnumber);
@@ -42,6 +37,27 @@ class App extends React.Component{
         fullStop : false
       });
     }
+    }
+    else if(event === 'DEL'){
+        if(this.state.listnumber === ''){
+          this.setState({
+            listnumber : this.state.listnumber,
+          })
+        }
+        else{
+            let slice = this.state.listnumber.split('');
+            slice.pop();
+            if(this.state.isCalculate === true){
+              this.setState({
+                listnumber : slice.join(''),
+                number : '',
+                isCalculate : false
+              })
+            }else{
+            this.setState({
+              listnumber : slice.join(''),
+            })}
+          }
     }
     else if(event === '.' && this.state.fullStop === true){
       this.setState({
@@ -93,12 +109,23 @@ class App extends React.Component{
       })
     }
     else if(event != 'AC' && event != '=' && this.state.isCalculate === false){
-    if(event === '0' && this.state.zeroHandler === true){
+      if((regex2.test(this.state.listnumber) === true) && (this.state.listnumber != '')){
+        if(event === '0'){
+          this.setState({
+            listnumber : '0.'
+          })
+        }else{
+        this.setState({
+          listnumber : '' + event,
+        });
+      }
+      }else{
+      if(event === '0' && this.state.zeroHandler === true){
       this.setState({
         listnumber : this.state.listnumber + event,
         isCalculate : false
       });
-    }else if(event === '0' && this.state.zeroHandler === false){
+      }else if(event === '0' && this.state.zeroHandler === false){
       this.setState({
         listnumber : this.state.listnumber + '0.',
         fullStop : true,
@@ -111,7 +138,7 @@ class App extends React.Component{
       isCalculate : false,
       zeroHandler : true
     })
-  }
+  }}
   } 
     else if(this.state.isCalculate === true){
       if(event === '0'){
